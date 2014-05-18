@@ -8,7 +8,7 @@ It is composed of:
 - A python [agent](tree/master/agent) that start containers according this manifest
 - A [bootstrap-vz](http://bootstrapvz.readthedoc.org/) plugin to build Cloud Provider images with the agent and its dependencies
 
-[Browse the documentation](tree/master/docs/)
+[Get started](tree/master/docs/)
 
 ## Usage
 
