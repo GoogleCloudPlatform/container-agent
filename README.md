@@ -1,7 +1,7 @@
 ContainerVM
 ===========
 
-ContainerVM is a lightweight [Debian](https://debian.org) image designed to simplify running [Docker](https://docker.io) containers in the Cloud.
+ContainerVM is a lightweight [Debian](https://debian.org) Virtual Machine image designed to simplify running [Docker](https://docker.io) containers in the Cloud.
 
 It is composed of:
 - A YAML/JSON [manifest](#manifest-examples) format to configure and run a group of containers
