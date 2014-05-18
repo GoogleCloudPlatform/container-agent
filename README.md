@@ -8,9 +8,11 @@ It is composed of:
 - A python [agent](tree/master/agent) that start containers according this manifest
 - A [bootstrap-vz](http://bootstrapvz.readthedoc.org/) plugin to build Cloud Provider images with the agent and its dependencies
 
+[Browse the documentation](tree/master/docs/)
+
 ## Usage
 
-### Google Compute Engine
+### Google Cloud Platform
 
 ```
 gcutil addinstance containervm-test \
@@ -18,9 +20,13 @@ gcutil addinstance containervm-test \
     --metadata_from_file=google-container-manifest:containers.yaml
 ```
 
-## Manifest examples
+[More advanced instructions](tree/master/docs/README.md#google)
 
-### Simple netcat server
+## Manifest
+
+### Example
+
+A simple netcat server
 ```
 version: v1beta1
 containers:
@@ -33,27 +39,7 @@ containers:
         containerPort: 8080
 ```
 
-### Multiple containers (w/ private images)
-
-```
-version: v1beta1
-containers:
-  - name: docker-registry
-    image: google/docker-registry
-    ports:
-      - name: registry
-        hostPort: 5000
-        containerPort: 5000
-    env:
-      - name: GCS_BUCKET
-        value: my-gcs-bucket
-  - name: my-private-app
-    image: localhost:5000/my/private-app
-    ports:
-      - name: http
-        hostPort: 80
-        containerPort: 8080
-```
+[More examples](tree/master/docs/README.md#manifest)
 
 ## Community
 
@@ -62,3 +48,7 @@ containers:
 - Chat with the community on [IRC](irc://irc.freenode.net/#container-vm)
 - [Submit](/issues) Issues & Feature requests to the GitHub issue tracker
 - [Fork](/fork) the repository and start [contributing](CONTRIBUTING.md)
+
+# License/README.md#google)
+
+[Apache License, Version 2.0)(tree/master/COPYING.md)
