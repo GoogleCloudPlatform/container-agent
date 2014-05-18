@@ -74,4 +74,4 @@ containers:
 - Ask development and best practices quesiton on [Stack Overflow](https://stackoverflow/container-vm)
 - Chat with the community on [IRC](irc://irc.freenode.net/#container-vm)
 - [Submit](/issues) Issues & Feature requests to the GitHub issue tracker
-- [Fork](/fork) the repository and start [contributing](CONTRIBUTING.md]
+- [Fork](/fork) the repository and start [contributing](CONTRIBUTING.md)
