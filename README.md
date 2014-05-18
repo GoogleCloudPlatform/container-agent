@@ -49,6 +49,6 @@ containers:
 - [Submit](/issues) Issues & Feature requests to the GitHub issue tracker
 - [Fork](/fork) the repository and start [contributing](CONTRIBUTING.md)
 
-# License/README.md#google)
+## License
 
-[Apache License, Version 2.0)(tree/master/COPYING.md)
+[Apache License, Version 2.0](tree/master/COPYING.md)
