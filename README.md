@@ -20,19 +20,6 @@ gcutil addinstance containervm-test \
 
 ## Manifest examples
 
-### Redis
-```
-version: v1beta1
-containers:
-  - name: my-redis
-    image: dockerfile/redis
-    ports:
-      - name: redis
-        hostPort: 6379
-        containerPort: 6379
-```
-
-
 ### Simple netcat server
 ```
 version: v1beta1
