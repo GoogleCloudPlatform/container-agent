@@ -1,7 +1,7 @@
 container-agent
 ===============
 
-container-agent is a small python agent designed to start a group of [Docker](https://docker.io) containers according to a YAML [manifest](#manifest).
+container-agent is a small python agent designed to start a group of [Docker](https://docker.io) containers according to a YAML [manifest](#manifest-examples).
 
 ## Usage
 
@@ -33,10 +33,6 @@ gcutil addinstance containervm-test \
 
 ## Manifest
 
-[Documentation](https://developers.google.com/compute/docs/containers#manifest_format)
-
-### Examples
-
 A simple netcat server.
 ```
 version: v1beta1
@@ -50,28 +46,7 @@ containers:
         containerPort: 8080
 ```
 
-A container group including:
-- [`google/docker-registry`](https://index.docker.io/u/google/docker-registry) to pull (and push) private image from a [Google Cloud Storage](https://developers.google.com/storage/) bucket.
-- Another container pulled from the registry container running localhost.
-```
-version: v1beta1
-containers:
-- name: registry
-  image: google/docker-registry
-  env:
-    - key: GCS_BUCKET
-      value: my-private-repository-bucket
-  ports:
-    - name: port5000
-      hostPort: 5000
-      containerPort: 5000
-- name: my-private-app
-  image: localhost:5000/my/app
-  ports:
-    - name: port80
-      hostPort: 80
-      containerPort: 8080
-```
+[Read the Manifest format specification, and browse examples](manifests/)
 
 ## Community
 
