@@ -1,7 +1,7 @@
 container-agent
 ===============
 
-container-agent is a small python agent designed to start a group of [Docker](https://docker.io) containers according to a YAML [manifest](#manifest-examples).
+container-agent is a small python agent designed to start a group of [Docker](https://docker.io) containers according to a YAML [manifest](#manifest).
 
 ## Usage
 
