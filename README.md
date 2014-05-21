@@ -43,7 +43,7 @@ version: v1beta1
 containers:
   - name: simple-echo
     image: google/busybox
-    command: ['nc', '-l', '-p', '8080', '-c', 'echo hello world!']
+    command: ['nc', '-p', '8080', '-l', '-l', '-e', 'echo', 'hello world!']
     ports:
       - name: nc-echo
         hostPort: 8080
