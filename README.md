@@ -71,6 +71,7 @@ containers:
     - name: port80
       hostPort: 80
       containerPort: 8080
+```
 
 ## Community
 
