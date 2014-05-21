@@ -33,6 +33,8 @@ gcutil addinstance containervm-test \
 
 ## Manifest
 
+[Documentation](https://developers.google.com/compute/docs/containers#manifest_format)
+
 ### Examples
 
 A simple netcat server.
