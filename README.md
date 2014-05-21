@@ -15,7 +15,7 @@ env/bin/container-agent <path/to/manifest.yaml>
 
 ### Google Cloud Platform
 
-Container-optimized including `container-agent` are available for Google Compute Engine.
+Container-optimized images including `container-agent` are available for Google Compute Engine.
 
 You can list available versions using:
 ```
@@ -25,7 +25,7 @@ gcutil --project=google-containers listimages
 You can launch a new instance running `container-agent`. It will try to read the [manifest](#manifest) from `google-container-manifest` metadata on startup:
 ```
 gcutil addinstance containervm-test \
-    --image=projects/google-containers/global/images/containervm-v20140522 \
+    --image=projects/google-containers/global/images/container-vm-v20140522 \
     --metadata_from_file=google-container-manifest:containers.yaml
 ```
 
