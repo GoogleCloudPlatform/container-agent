@@ -1,32 +1,41 @@
-ContainerVM
-===========
+container-agent
+===============
 
-ContainerVM is a lightweight [Debian](https://debian.org) image designed to simplify running [Docker](https://docker.io) containers in Virtual Machines.
-
-It is composed of:
-- A YAML/JSON [manifest](#manifest-examples) format to configure and run a group of containers
-- A python [agent](tree/master/agent) that start containers according the manifest
-- A [bootstrap-vz](http://bootstrapvz.readthedoc.org/) plugin to build Cloud Provider images with the agent and its dependencies
-
-[Get started with ContainerVM](tree/master/docs/)
+container-agent is a small python agent designed to start a group of [Docker](https://docker.io) containers according to a YAML [manifest](#manifest).
 
 ## Usage
 
-### Google Cloud Platform
+### Locally
 
 ```
+virtualenv env
+env/bin/pip install git+http://github.com/proppy/container-vm-agent.git
+env/bin/container-agent <path/to/manifest.yaml>
+```
+
+### Google Cloud Platform
+
+Container-optimized including `container-agent` are available for Google Compute Engine.
+
+You can list available versions using:
+```
+gcutil --project=google-containers listimages
+```
+
+You can launch a new instance running `container-agent`. It will try to read the [manifest](#manifest) from `google-container-manifest` metadata on startup:
+```
 gcutil addinstance containervm-test \
-    --image=projects/google-containers/global/images/containervm-v20140517 \
+    --image=projects/google-containers/global/images/containervm-v20140522 \
     --metadata_from_file=google-container-manifest:containers.yaml
 ```
 
-[More advanced instructions](tree/master/docs/README.md#google)
+[Read more about Containers on the Google Cloud Platform](https://developers.google.com/compute/docs/containers)
 
 ## Manifest
 
-### Example
+### Examples
 
-A simple netcat server
+A simple netcat server.
 ```
 version: v1beta1
 containers:
@@ -39,15 +48,35 @@ containers:
         containerPort: 8080
 ```
 
-[More examples](tree/master/docs/README.md#manifest)
+A container group including:
+- [`google/docker-registry`](https://index.docker.io/u/google/docker-registry) to pull (and push) private image from a [Google Cloud Storage](https://developers.google.com/storage/) bucket.
+- Another container pulled from the registry container running localhost.
+```
+version: v1beta1
+containers:
+- name: registry
+  image: google/docker-registry
+  env:
+    - key: GCS_BUCKET
+      value: my-private-repository-bucket
+  ports:
+    - name: port5000
+      hostPort: 5000
+      containerPort: 5000
+- name: my-private-app
+  image: localhost:5000/my/app
+  ports:
+    - name: port80
+      hostPort: 80
+      containerPort: 8080
 
 ## Community
 
 - Give early feedback and talk with the community (including the developer team) on the [mailing-list](https://groups.google.com/d/google-containers)
-- Ask development and best practices quesiton on [Stack Overflow](https://stackoverflow/container-vm)
-- Chat with the community on [IRC](irc://irc.freenode.net/#container-vm)
-- [Submit](/issues) Issues & Feature requests to the GitHub issue tracker
-- [Fork](/fork) the repository and start [contributing](CONTRIBUTING.md)
+- Ask development and best practices questions on [Stack Overflow](http://stackoverflow.com/questions/tagged/google-compute-engine+docker)
+- Chat with the community on [IRC](irc://irc.freenode.net/#google-containers)
+- [Submit](https://github.com/GoogleCloudPlatform/container-agent/issues) Issues & Feature requests to the GitHub issue tracker
+- [Fork](https://github.com/GoogleCloudPlatform/container-agent/fork) the repository and start [contributing](CONTRIB.md)
 
 ## License
 
