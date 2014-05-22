@@ -1,7 +1,7 @@
 container-agent
 ===============
 
-container-agent is a small python agent designed to start a group of [Docker](https://docker.io) containers according to a YAML [manifest](#manifest).
+container-agent is a small python agent designed to manage a [group](#container-group) of [Docker](https://docker.io) containers according to a YAML [manifest](#manifest).
 
 ## Usage
 
@@ -30,6 +30,17 @@ gcutil addinstance containervm-test \
 ```
 
 [Read more about Containers on the Google Cloud Platform](https://developers.google.com/compute/docs/containers)
+
+## Container Group
+
+The agent setup the container group defined by the manifest to share:
+- Network Namespaces
+- Volumes
+
+This creates a runtime environment where:
+- Containers can connect to a service running in other containers of the same group using `localhost` and a fixed port.
+- Containers of the same group can't run services on the same ports.
+- Containers of the same group can mount shared volumes defined in the manifest.
 
 ## Manifest
 
