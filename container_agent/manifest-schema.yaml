@@ -1,0 +1,66 @@
+type: object
+properties:
+  version:
+    type: string
+    enum:
+      - 'v1beta1'
+  containers:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+        image:
+          type: string
+        command:
+          type: array
+          items:
+            type: string
+        workingDir: 
+          type: string
+        volumeMounts:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              path:
+                type: string
+              readOnly:
+                type: boolean
+        ports:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              containerPort:
+                type: integer
+              hostPort:
+                type: integer
+              protocol:
+                type: string
+          env:
+            type: array
+            items:
+              type: object
+              properties:
+                key:
+                  type: string
+                value:
+                  type: string
+      required:
+        - name
+        - image
+  volumes:
+    type: array
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+required:
+  - version

@@ -45,7 +45,7 @@ import sys
 import syslog
 import time
 import yaml
-
+import schema
 
 PROGNAME = 'containervm-agent'
 
@@ -475,6 +475,7 @@ def main():
     else:
         config = yaml.load(sys.stdin)
 
+    schema.validate(config)
     syslog.openlog(PROGNAME)
     LogInfo('processing container manifest')
 
