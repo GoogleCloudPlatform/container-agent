@@ -14,7 +14,7 @@ class SchemaTest(unittest.TestCase):
             manifest = yaml.load(f.read())
         schema.validate(manifest)
 
-    def test_validateBad(self):
+    def test_validateBadVersion(self):
         manifest = {}
         self.assertRaises(jsonschema.ValidationError,
                           schema.validate, manifest)
@@ -28,11 +28,35 @@ class SchemaTest(unittest.TestCase):
             }
         self.assertRaises(jsonschema.ValidationError,
                           schema.validate, manifest)
+
+    def test_validateBadContainer(self):
         manifest = {
-            'version': '1',
+            'version': 'v1beta1',
             'containers': [{
                 'image': 'foo'
                 }]
             }
+        self.assertRaises(jsonschema.ValidationError,
+                          schema.validate, manifest)
+
+    def test_validateBadVolume(self):
+        manifest = {
+            'version': 'v1beta1',
+            'volumes': [{}]
+            }
+        self.assertRaises(jsonschema.ValidationError,
+                          schema.validate, manifest)
+        manifest = {
+            'version': 'v1beta1',
+            'volumes': [{'name': '1-bad-volume-name'}]
+            }
+        self.assertRaises(jsonschema.ValidationError,
+                          schema.validate, manifest)
+        manifest = {
+            'version': 'v1beta1',
+            'volumes': [
+                {'name': 'duplicate-volume-name'},
+                {'name': 'duplicate-volume-name'}
+            ]}
         self.assertRaises(jsonschema.ValidationError,
                           schema.validate, manifest)
