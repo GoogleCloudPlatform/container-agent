@@ -14,6 +14,18 @@ class SchemaTest(unittest.TestCase):
             manifest = yaml.load(f.read())
         schema.validate(manifest)
 
+    def test_ignoreUnknownAttributes(self):
+        manifest = {
+            'version': 'v1beta1',
+            'unknown': 'attribute',
+            'containers': [{
+                'name': 'foo1',
+                'image': 'foo',
+                'unknown': 'attribute'
+                }]
+            }
+        schema.validate(manifest)
+
     def test_validateBadVersion(self):
         manifest = {}
         self.assertRaises(jsonschema.ValidationError,
