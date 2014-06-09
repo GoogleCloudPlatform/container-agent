@@ -10,7 +10,7 @@ setup(
   packages = ['container_agent'],
   entry_points = {
     'console_scripts': [
-      'container-agent = container_agent.run_containers:run'
+      'container-agent = container_agent.run_containers:main'
     ],
   },
 )
