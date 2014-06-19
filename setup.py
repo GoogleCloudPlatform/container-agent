@@ -6,6 +6,7 @@ setup(
   license = 'Apache 2.0',
   install_requires = [
     'pyyaml',
+    'jsonschema'
   ],
   packages = ['container_agent'],
   entry_points = {
