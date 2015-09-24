@@ -435,7 +435,6 @@ def RunContainers(containers):
         proc = subprocess.Popen(
             [DOCKER_CMD, 'run', '-d'] +
             ['--name', ctr.name] +
-            FlagOrNothing(ctr.hostname, '--hostname') +
             FlagOrNothing(ctr.working_dir, '--workdir') +
             FlagOrNothing(ctr.network_from, '--net') +
             FlagList(['%s:%s%s' % (p[0], p[1], p[2])
